@@ -17,12 +17,17 @@ def safely_get_value(
     Safely get a value from a dictionary.
 
     Args:
-        dct (Mapping[Any, T]): The dictionary to get the value from.
-        key (Any): The key to get the value for.
-        default (Union[T, None], optional): The default value to return if the key is not found. Defaults to None.
+        dct (Mapping[Any, T]):
+            The dictionary to get the value from.
+        key (Any):
+            The key to get the value for.
+        default (Union[T, None], optional):
+            The default value to return if the key is not found.
+            Defaults to None.
 
     Returns:
-        Union[T, None]: The value from the dictionary or the default value.
+        Union[T, None]:
+            The value from the dictionary or the default value.
     """
     if key in dct:
         return dct[key]
