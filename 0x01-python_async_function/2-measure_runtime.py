@@ -31,6 +31,7 @@ async def measure_time(n: int, max_delay: int) -> float:
     average_time = total_time / n
     return average_time
 
+
 if __name__ == "__main__":
     # Example usage as in 2-main.py
     n = 5
