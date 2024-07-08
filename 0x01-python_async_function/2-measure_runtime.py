@@ -6,7 +6,7 @@ wait_n coroutine and calculate the average time per coroutine.
 
 import asyncio
 import time
-from _1_concurrent_coroutines import wait_n
+from concurrent_coroutines import wait_n
 
 
 async def measure_time(n: int, max_delay: int) -> float:
@@ -30,9 +30,8 @@ async def measure_time(n: int, max_delay: int) -> float:
     average_time = total_time / n
     return average_time
 
-
 if __name__ == "__main__":
+    # Example usage
     n = 5
     max_delay = 9
-    result = asyncio.run(measure_time(n, max_delay))
-    print(result)
+    print(asyncio.run(measure_time(n, max_delay)))
