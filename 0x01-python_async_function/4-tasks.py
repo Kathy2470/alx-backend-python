@@ -35,3 +35,11 @@ async def task_wait_n(n: int, max_delay: int) -> list:
     """
     tasks = [task_wait_random(max_delay) for _ in range(n)]
     return await asyncio.gather(*tasks)
+
+if __name__ == "__main__":
+    # Example usage
+    async def test_task_wait_n(n: int, max_delay: int) -> None:
+        delays = await task_wait_n(n, max_delay)
+        print(delays)
+
+    asyncio.run(test_task_wait_n(5, 6))
