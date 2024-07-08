@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 This module provides a function to measure the execution time of
 wait_n coroutine and calculate the average time per coroutine.
@@ -6,7 +7,7 @@ wait_n coroutine and calculate the average time per coroutine.
 
 import asyncio
 import time
-from concurrent_coroutines import wait_n
+from _1_concurrent_coroutines import wait_n
 
 
 async def measure_time(n: int, max_delay: int) -> float:
@@ -31,7 +32,7 @@ async def measure_time(n: int, max_delay: int) -> float:
     return average_time
 
 if __name__ == "__main__":
-    # Example usage
+    # Example usage as in 2-main.py
     n = 5
     max_delay = 9
     print(asyncio.run(measure_time(n, max_delay)))
