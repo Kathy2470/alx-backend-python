@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 This module provides a function to measure the execution time of
 wait_n coroutine and calculate the average time per coroutine.
@@ -30,6 +29,7 @@ async def measure_time(n: int, max_delay: int) -> float:
 
     average_time = total_time / n
     return average_time
+
 
 if __name__ == "__main__":
     n = 5
