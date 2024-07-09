@@ -6,7 +6,8 @@ an async comprehension over async_generator and returns the 10 random numbers.
 
 import asyncio
 from typing import List
-from async_generator import async_generator  # correct import path
+from async_generator import async_generator
+
 
 async def async_comprehension() -> List[float]:
     """
@@ -15,4 +16,5 @@ async def async_comprehension() -> List[float]:
     Returns:
         List[float]: A list of 10 random numbers.
     """
-    return [num async for num in async_generator()]
+    numbers: List[float] = [num async for num in async_generator()]
+    return numbers
