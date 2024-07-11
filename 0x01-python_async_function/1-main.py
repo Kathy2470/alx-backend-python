@@ -4,8 +4,7 @@ Test file for printing the correct output of the measure_time coroutine
 '''
 
 import asyncio
-
-measure_time = __import__('2-measure_time').measure_time
+from measure_time import measure_time
 
 async def main():
     n = 5

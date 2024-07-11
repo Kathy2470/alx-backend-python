@@ -33,7 +33,6 @@ async def measure_time(n: int, max_delay: int) -> float:
 
 
 if __name__ == "__main__":
-    # Example usage as in 2-main.py
     n = 5
     max_delay = 9
     print(asyncio.run(measure_time(n, max_delay)))
