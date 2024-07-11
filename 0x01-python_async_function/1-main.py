@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 '''
-Test file for printing the correct output of the wait_n coroutine
+Test file for printing the correct output of the measure_time coroutine
 '''
+
 import asyncio
 
-wait_n = __import__('1-concurrent_coroutines').wait_n
+measure_time = __import__('2-measure_time').measure_time
 
-print(asyncio.run(wait_n(5, 5)))
-print(asyncio.run(wait_n(10, 7)))
-print(asyncio.run(wait_n(10, 0)))
+async def main():
+    n = 5
+    max_delay = 9
+    elapsed_time = await measure_time(n, max_delay)
+    print("Approximate elapsed time falls within an acceptable range: {}.".format(0 <= elapsed_time <= max_delay * 1.02))
+
+if __name__ == "__main__":
+    asyncio.run(main())
