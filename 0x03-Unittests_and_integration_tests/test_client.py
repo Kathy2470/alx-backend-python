@@ -1,24 +1,49 @@
 #!/usr/bin/env python3
 """
-TestGithubOrgClient module
+Unit tests for GithubOrgClient class.
 """
+
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from client import GithubOrgClient
 
 class TestGithubOrgClient(unittest.TestCase):
     """
-    TestGithubOrgClient class
+    Test class for GithubOrgClient.
     """
-    @patch('client.GithubOrgClient._GithubOrgClient__get_org')
-    def test_public_repos_url(self, mock_get_org):
+
+    @patch('client.get_json')
+    def test_public_repos(self, mock_get_json):
         """
-        Test that _public_repos_url returns the expected URL
+        Test public_repos method with mocked _public_repos_url and get_json.
         """
-        mock_get_org.return_value = {'login': 'test-org'}
-        client = GithubOrgClient('test-org')
-        expected_url = 'https://api.github.com/orgs/test-org/repos'
-        self.assertEqual(client._public_repos_url, expected_url)
+        # Define the mock payload for get_json
+        mock_payload = [
+            {"name": "repo1"},
+            {"name": "repo2"},
+            {"name": "repo3"}
+        ]
+        mock_get_json.return_value = mock_payload
+
+        # Mock _public_repos_url to return a test URL
+        with patch('client.GithubOrgClient._public_repos_url', new_callable=property) as mock_public_repos_url:
+            mock_public_repos_url.return_value = "https://api.github.com/orgs/test/repos"
+            
+            # Create an instance of GithubOrgClient
+            client = GithubOrgClient("test_org")
+
+            # Call the public_repos method
+            repos = client.public_repos()
+
+            # Define the expected repos list
+            expected_repos = mock_payload
+
+            # Test that the list of repos is what you expect
+            self.assertEqual(repos, expected_repos)
+
+            # Test that _public_repos_url and get_json were called once
+            mock_public_repos_url.assert_called_once()
+            mock_get_json.assert_called_once_with("https://api.github.com/orgs/test/repos")
 
 if __name__ == '__main__':
     unittest.main()
